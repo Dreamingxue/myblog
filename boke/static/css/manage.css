@@ -1,0 +1,99 @@
+
+.allArticle .table{
+    width:100%;
+    text-align:center;
+    vertical-align: middle;
+}
+.allArticle .table th{
+    border:1px solid #999;
+    height:40px;
+    background: #abcdef
+}
+.allArticle .table tr td{
+    border:1px solid #ccc;
+    height:30px;
+    padding: 5px;
+}
+
+@media screen and (min-width: 768px){
+    .pc{
+        width:80%;
+        margin: 0 auto;
+    }
+    .atical-header{
+        margin: 30px 0;
+    }
+    .atical-header .atical-nav{
+        margin:30px 0px;
+        text-align:left;
+    }
+    .atical-header h1{
+        font-size:20px;
+        font-weight: 600;
+    }
+    .atical-header .mybtn{
+        border-radius:3px;
+        padding: 5px 10px;
+    }
+    .atical-header .add-artical{
+        width:50%;
+        float: left;
+    }
+    .atical-header .search{
+        float:right;
+    }
+    .atical-header .artical-type{
+        width:100px;
+        height: 34px;
+        border-style:none;
+        border-radius:6px;
+    }
+    .allArticle .col-last{
+        padding: 3px;
+    }
+    .allArticle .col-last .btn{
+        width: 50px;
+        height:30px;
+        text-align:center;
+        font-size:12px;
+    }
+}
+@media screen and (max-width:767px){
+    .pc{
+        width: 95%;
+        margin: 0 auto;
+    }
+    .atical-header{
+        margin: 20px 0;
+    }
+    .atical-header .mybtn{
+        height: 30px;
+        padding: 5px 10px;
+   }
+   .atical-header .artical-type{
+        width:80px;
+        height: 30px;
+        border-style:none;
+        border-radius:6px;
+    }
+    .allArticle .col-last{
+        padding: 3px;
+    }
+    .allArticle .col-last .btn{
+        width: 40px;
+        height:25px;
+        padding:5px;
+        font-size:12px;
+        margin-bottom: 5px;
+    }
+
+}
+@media screen and (min-width:768px) and (max-width:912px){
+    .allArticle .col-last .btn{
+        width: 40px;
+        height:25px;
+        padding:5px;
+        font-size:12px;
+        margin-bottom: 5px;
+    }
+}

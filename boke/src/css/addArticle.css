@@ -1,0 +1,139 @@
+.tips{
+    width:100%;
+    height:30px;
+    text-align:center;
+    line-height: 40px;
+    font-size:18px;
+    background:rgba(200,200,0,0.6);
+    position: fixed;
+    bottom: 0px;
+}
+.addArticle{
+    overflow: hidden;
+    width: 95%;
+    margin: 0 auto;
+    //border: 1px solid red;
+}
+.clearfix:after { clear: both; }
+/* IE 6/7 */
+.clearfix { zoom: 1; }
+.addArticle{
+    width: 95%;
+    margin: 0 auto;
+}
+.fabu{
+    display: block;
+}
+@media screen and (max-width: 767px){
+    .addArticle .addarticle-header h2{
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .addArticle .addarticle-header input{
+        width: 100%;
+    }
+    .addarticle-main .addarticle-header{
+        text-align: left;
+        padding: 10px 0px;
+    }
+    .addarticle-aside{
+        margin: 10px 0px;
+        text-align:left;
+    }
+    .addarticle-aside .item{
+        width:100%;
+        margin-left: 10px;
+        padding: 5px 0px;
+    }
+    .addarticle-aside .item label{
+        width:10%;
+        vertical-align: middle;
+    }
+    .addarticle-aside form .item input{
+        width:80%;
+        height:35px;
+    }
+     .addarticle-aside p{
+         text-align: left;
+         padding: 0 10px;
+         color: #000;
+         font-weight: 600;
+         font-size: 12px;
+    }
+    .addarticle-aside .type-list{
+        width: 95%;
+        margin: 0 auto;
+        height: 200px;
+        padding: 10px 10px;
+        text-align: left;
+        background: #fff;
+    }
+
+}
+@media screen and (min-width:768px){
+    .addArticle .addarticle-header h2{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .addarticle-main {
+        width:73%;
+        float:left;
+    }
+    .addarticle-aside{
+        width:25%;
+        float:right;
+    }
+    .addarticle-main .addarticle-header{
+        text-align: left;
+        padding: 10px 0px;
+    }
+    .addarticle-main .addarticle-header .addarticle-title{
+        width:100%;
+    }
+    #editor {
+        margin-top: 10px;
+        width: 100%;
+        height: 580px;
+    }
+    .mybtn{
+        margin:10px 0;
+    }
+    .addarticle-aside form{
+        margin-top: 60px;
+    }
+
+    .addarticle-aside form .item{
+        width:100%;
+        margin-bottom: 15px;
+    }
+    .addarticle-aside form .item label{
+        width:30%;
+        padding-right: 5px;
+        vertical-align: middle;
+    }
+    .addarticle-aside form .item input{
+        width:68%;
+        height:35px;
+    }
+    .addarticle-aside p{
+         text-align: left;
+         padding: 0 10px;
+         color: #000;
+         font-weight: 600;
+         font-size: 12px;
+    }
+    .addarticle-aside .type-list{
+        width: 95%;
+        margin: 0 auto;
+        height: 200px;
+        padding: 10px 10px;
+        text-align: left;
+        background: #fff;
+    }
+}
+
+
+
+
+
