@@ -7,7 +7,7 @@
                     <ul >
                         <li>
                             <label >昵称</label><br />
-                            <input  name="screenName" type="text" class="text" :value="nick" v-model='nick'>
+                            <input  name="screenName" type="text" class="text" v-model='nick'>
                             <p>将此项不能留空, 用于后台登陆.</p>
                         </li>
                     </ul>
@@ -15,7 +15,7 @@
                         <li>
                             <label>
                             个人主页地址</label><br />
-                            <input id="url-0-2" name="url" type="text" class="text" :value="address" v-model='address'>
+                            <input id="url-0-2" name="url" type="text" class="text" v-model='address'>
                             <p>
                             此用户的个人主页地址, 请用 <code>http://</code> 开头.</p>
                         </li>
@@ -24,7 +24,7 @@
                         <li>
                             <label >
                             电子邮箱地址 *</label><br />
-                            <input  name="mail" type="text" class="text" :value="email" v-model='email'>
+                            <input  name="mail" type="text" class="text" v-model='email'>
                             <p class="description">
                             电子邮箱地址将作为此用户的主要联系方式.<br />请不要与系统中现有的电子邮箱地址重复.</p>
                         </li>
@@ -90,21 +90,29 @@
         },
         //实例创建之后渲染数据到界面
         created(){
-            $.ajax({
-                url:this.staticURL+'users/personal',
-                type:'GET',
-                success:(data)=>{
-                    this.nick=data.nick;
+            axios.get(this.staticURL+'users/personal').then(data => {
+                this.nick=data.nick;
                     this.address=data.address;
                     this.email=data.email;
                     this._id=data._id;
-                },
-                dataType:'json',
-                error:(xhr,status,error)=>{
-                    this.message='发送请求失败'
-                    this.toggle=true
-                }
+            }).catch(error => {
+                console.error(error);
             })
+            // $.ajax({
+            //     url:this.staticURL+'users/personal',
+            //     type:'GET',
+            //     success:(data)=>{
+            //         this.nick=data.nick;
+            //         this.address=data.address;
+            //         this.email=data.email;
+            //         this._id=data._id;
+            //     },
+            //     dataType:'json',
+            //     error:(xhr,status,error)=>{
+            //         this.message='发送请求失败'
+            //         this.toggle=true
+            //     }
+            // })
         },
         methods:{
             //更改个人资料数据

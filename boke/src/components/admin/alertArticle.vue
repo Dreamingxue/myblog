@@ -4,7 +4,7 @@
             <div class='addarticle-main'>
                 <div class="addarticle-header">
                     <h2>撰写新文章</h2>
-                    <input type="text" placeholder="标题" class="addarticle-title" v-model='articleTitle' :value='articleTitle'>
+                    <input type="text" placeholder="标题" class="addarticle-title" v-model='articleTitle'>
                 </div>
                 <div id="editor">
                     <mavon-editor style="height: 100%" v-model='content' @change="callbackSave"></mavon-editor>
@@ -18,19 +18,19 @@
                 <form>
                     <div class='item'>
                         <label for="date">日期</label>
-                        <input type="date" id="date" :value="date" placeholder="" v-model='date' >
+                        <input type="date" id="date" placeholder="" v-model='date' >
                     </div>
                     <div class="item">
                         <label for="authod">作者</label>
-                        <input type="text" id="authod" placeholder="作者" v-model='authod' :value='authod'>
+                        <input type="text" id="authod" placeholder="作者" v-model='authod'>
                     </div>
                     <div class="item">
                         <label for="myid">文章编号</label>
-                        <input type="text" id="myid" placeholder="文章编号" v-model='id' :value='id'>
+                        <input type="text" id="myid" placeholder="文章编号" v-model='id'>
                     </div>
                     <div class='item'>
                         <label for="keyword">设置关键词</label>
-                        <input type="text" id="keyword" placeholder="设置关键词" v-model='keyword' :value='keyword'>
+                        <input type="text" id="keyword" placeholder="设置关键词" v-model='keyword'>
                     </div>
                     <div class='type'>
                         <p>分类</p>
