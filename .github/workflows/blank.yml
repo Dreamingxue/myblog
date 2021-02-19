@@ -42,7 +42,7 @@ jobs:
           before_script: |
             df -h
           after_script: |
-            docker cp /opt/publish/boke.tgz nginx-blc:/opt/publish/
+            docker cp /opt/publish/boke.tgz nginx-boke:/opt/publish/
             docker exec nginx-boke /bin/sh /opt/boke-web.sh
       # 部署到服务器
 #      - name: Deploy
