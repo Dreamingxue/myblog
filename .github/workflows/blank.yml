@@ -24,10 +24,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: cd boke
-
-      - name: Run a one-line script
-        run: npm install && build
+        run: cd boke;npm install; npm build;
 
       - name: Run a one-line script
         run: tar -zcvf boke.tgz dist
