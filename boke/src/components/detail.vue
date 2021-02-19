@@ -32,8 +32,7 @@
         <div id="SOHUCS" :sid="detailArticle._id"></div>
     </div>
 </template>
-<script>
-</script>
+
 <script>
     import MarkdownIt from 'markdown-it';//先安装再引入
      export default{
