@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,11 +24,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: npm install
+        run: cd boke
+        run: npm install && build
 
       - name: Run a one-line script
-        run: npm run build
-      - run: tar -zcvf boke.tgz dist
+      - run: tar -zcvf boke.tgz boke/dist
 
       - name: deploy to server
         uses: kostya-ten/ssh-server-deploy@v4
@@ -37,28 +37,10 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          scp_source: release.tgz
+          scp_source: boke.tgz
           scp_target: ${{ secrets.DESTINATION }}
           before_script: |
             df -h
           after_script: |
             docker cp /opt/publish/boke.tgz nginx-boke:/opt/publish/
             docker exec nginx-boke /bin/sh /opt/boke-web.sh
-      # 部署到服务器
-#      - name: Deploy
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: ${{ secrets.HOST }} # 连接服务器参数
-#          username: ${{ secrets.USERNAME }} # 连接服务器参数
-#          password: ${{ secrets.PASSWORD }} # 连接服务器参数
-#          port: ${{ secrets.PORT }} # 连接服务器参数2
-#          script: |
-#            cd /opt/publish # 确保远程服务器必须有这个文件夹
-#            tar zxvf release.tgz # 解压
-#            docker cp /opt/publish/release.tgz nginx-blc:/opt/
-#            docker exec -it nginx-blc /bin/bash
-#            cp -rf /opt/dist/* /usr/share/nginx/html/
-#            mv /usr/share/nginx/html/index.html /usr/share/nginx/html/blc/
-#            rm -rf /opt/dist
-#            exit
-
