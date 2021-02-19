@@ -47,11 +47,11 @@
         }).then((res) => {
           const data = res.data;
           if (data.s) {
-            Store.save(that.username)//登录成功后存储缓存
+            Store.save(that.username);//登录成功后存储缓存
             window.location.href = "#/admin"//成功后跳转到后台
           } else {
-            that.message = data.m;
-            that.myshow = true;
+            this.message = data.m;
+            this.myshow = true;
             setTimeout(() => {
               that.myshow = false
             }, 1000)
