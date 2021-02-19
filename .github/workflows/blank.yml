@@ -27,7 +27,7 @@ jobs:
         run: cd boke;npm install; npm build;
 
       - name: Run a one-line script
-        run: tar -zcvf boke.tgz boke/dist
+        run: cd boke; tar -zcvf boke.tgz /dist
 
       - name: deploy to server
         uses: kostya-ten/ssh-server-deploy@v4
@@ -36,7 +36,7 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          scp_source: boke.tgz
+          scp_source: ./boke/boke.tgz
           scp_target: ${{ secrets.DESTINATION }}
           before_script: |
             df -h
