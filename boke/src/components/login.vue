@@ -27,7 +27,7 @@
 </template>
 <script type="text/javascript">
   import Store from '../js/store.js'//引入缓存接口
-  import axios from 'axios'
+  import { login } from '../api/user';
 
   export default {
     data() {
@@ -40,9 +40,8 @@
     },
     methods: {
       mylogin() {
-        var that = this;
-        axios.post(this.staticURL + 'user/login', {
-          username: this.username,
+        login(this.staticURL + 'user/login', {
+          userName: this.username,
           password: this.password
         }).then((res) => {
           const data = res.data;
