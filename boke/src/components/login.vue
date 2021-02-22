@@ -66,7 +66,6 @@
 
   .login {
     background: #F5E5C1;
-  }
 
   .message {
     margin-top: -42px;
@@ -217,5 +216,6 @@
     .content {
       margin-top: 50px;
     }
+  }
   }
 </style>
