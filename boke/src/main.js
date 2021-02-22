@@ -14,7 +14,6 @@ import './css/base.css';
 
 Vue.use(ElementUI);
 
-
 new Vue({
   el: '#app',
   router,
