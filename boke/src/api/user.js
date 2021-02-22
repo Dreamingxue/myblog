@@ -1,5 +1,5 @@
-import { axios } from 'axios'
-import qs from 'querystring'
+import axios from 'axios';
+import qs from 'querystring';
 
 
 export const login = (url, data) => {
