@@ -64,11 +64,6 @@
 </script>
 <style scoped>
 
-  * {
-    padding: 0px;
-    margin: 0px;
-  }
-
   .login {
     background: #F5E5C1;
   }
@@ -109,7 +104,7 @@
       width: 468px;
       height: 468px;
       margin: 0 auto;
-      background: url('http://shenyuxf.top/blog/static/img/login_b1g.0ce2d7e.png') no-repeat;
+      background: url(../assets/img/login_b1g.png) no-repeat;
     }
 
     .lg_top {
@@ -135,7 +130,7 @@
       color: #666;
       width: 236px;
       margin: 4px 28px;
-      background: url('http://shenyuxf.top/blog/static/img/user.4e9566c.png') no-repeat;
+      background: url(../assets/img/user.png) no-repeat;
       padding-left: 10px;
       font-size: 16pt;
       font-family: Arial, Helvetica, sans-serif;
@@ -147,7 +142,7 @@
       color: #666;
       width: 236px;
       margin: 4px 28px;
-      background: url('http://shenyuxf.top/blog/static/img/password.02bca41.png') no-repeat;
+      background: url(../assets/img/password.png) no-repeat;
       padding-left: 10px;
       font-size: 16pt;
       font-family: Arial, Helvetica, sans-serif;
@@ -156,7 +151,7 @@
     .bn {
       width: 330px;
       height: 72px;
-      background: url('http://shenyuxf.top/blog/static/img/enter.4783b92.png') no-repeat;
+      background: url(../assets/img/enter.png) no-repeat;
       border: none;
       display: block;
       font-size: 18px;
