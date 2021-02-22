@@ -62,7 +62,7 @@
 
   }
 </script>
-<style scoped>
+<style scoped lang="scss">
 
   .login {
     background: #F5E5C1;
@@ -104,7 +104,7 @@
       width: 468px;
       height: 468px;
       margin: 0 auto;
-      background: url(../assets/img/login_b1g.png) no-repeat;
+      background: url(/static/img/login_b1g.png) no-repeat;
     }
 
     .lg_top {
@@ -130,7 +130,7 @@
       color: #666;
       width: 236px;
       margin: 4px 28px;
-      background: url(../assets/img/user.png) no-repeat;
+      background: url(/static/img/user.png) no-repeat;
       padding-left: 10px;
       font-size: 16pt;
       font-family: Arial, Helvetica, sans-serif;
@@ -142,7 +142,7 @@
       color: #666;
       width: 236px;
       margin: 4px 28px;
-      background: url(../assets/img/password.png) no-repeat;
+      background: url(/static/img/password.png) no-repeat;
       padding-left: 10px;
       font-size: 16pt;
       font-family: Arial, Helvetica, sans-serif;
@@ -151,7 +151,7 @@
     .bn {
       width: 330px;
       height: 72px;
-      background: url(../assets/img/enter.png) no-repeat;
+      background: url(/static/img/enter.png) no-repeat;
       border: none;
       display: block;
       font-size: 18px;
