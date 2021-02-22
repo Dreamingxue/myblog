@@ -1,11 +1,9 @@
 import axios from 'axios'
 
-let ApiUrl = 'http://47.244.19.181:8077/api'
-let SocketUrl = 'http://47.244.19.181:8077/socket.io'
+let ApiUrl = 'http://nlminepool.cn:9085/app'
 let prodapi = process.env.NODE_ENV === 'production' // 是否线上部署
 if (prodapi) {
   ApiUrl = '/api' // 线上API服务地址直接根路径
-  SocketUrl = 'http://47.244.19.181:8077/socket.io'
 }
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 30 * 1000
@@ -32,4 +30,4 @@ axios.interceptors.request.use(
   }
 )
 
-export { ApiUrl, SocketUrl, axios }
+export { ApiUrl, axios }

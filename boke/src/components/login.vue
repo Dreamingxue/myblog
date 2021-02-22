@@ -40,7 +40,7 @@
     },
     methods: {
       mylogin() {
-        login(this.staticURL + 'user/login', {
+        login({
           userName: this.username,
           password: this.password
         }).then((res) => {
