@@ -46,7 +46,8 @@
         }).then((res) => {
           const data = res.data;
           if (data.s) {
-            Store.save(that.username);//登录成功后存储缓存
+            window.sessionStorage.setItem('jwttoken', data.d);
+            Store.save(this.username);//登录成功后存储缓存
             window.location.href = "#/admin"//成功后跳转到后台
           } else {
             this.message = data.m;
