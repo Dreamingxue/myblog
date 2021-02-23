@@ -1,6 +1,12 @@
 import { axios } from './axios';
 import qs from 'querystring';
 
-export const searchArticle = (data) => {
-  return axios.get('/article/search', qs.stringify(data));
+/**
+ * 搜索文章
+ * @param params: {keyWords: string, author: String}
+ * @returns
+ */
+export const searchArticle = async (params) => {
+  const { data } = await axios.get('/article/search', qs.stringify(params));
+  return data;
 }

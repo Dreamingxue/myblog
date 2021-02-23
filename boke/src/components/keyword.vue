@@ -36,7 +36,7 @@
   </div>
 </template>
 <script type="text/javascript">
-  import axios from 'axios';
+  import { searchArticle } from '../api/article';
   //var MarkdownIt = require('markdown-it');
   import MarkdownIt from 'markdown-it';//先安装再引入
   export default {
@@ -52,34 +52,13 @@
       }
     },
     created() {
-      this.keyword = this.$route.params.keyword
-      //console.log('------------',this.$route.params.keyword)
-      $.ajax({
-        url: this.staticURL + 'searchKeyword',
-        data: {keyword: this.$route.params.keyword},
-        type: 'GET',
-        success: (data) => {
-          //console.log(data)
-          this.articles = data
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
+      this.keyword = this.$route.params.keyword;
+      searchArticle({keyWords: this.keyword}).then(data => {
+        if (data.s) {
+          this.articles = data.d.list;
+          this.total = data.d.total;
         }
-      })
-      $.ajax({
-        url: this.staticURL + 'searchKeywordAcount',
-        data: {keyword: this.$route.params.keyword},
-        type: 'GET',
-        success: (data) => {
-          //console.log(data.length)
-          this.total = data.length
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '文章数量请求失败'
-        }
-      })
+      });
     },
     methods: {
       //将输入的markdown文档通过解析后再渲染

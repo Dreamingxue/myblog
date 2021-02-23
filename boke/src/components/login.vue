@@ -7,8 +7,8 @@
           <div class="lg_top"></div>
           <div class="lg_main">
             <div class="lg_m_1">
-              <input placeholder="admin" class="ur" required v-model='username'>
-              <input type="password" required placeholder="password" class="pw" v-model='password'>
+              <Input placeholder="username" class="ur" required v-model='username' />
+              <Input type="password" required placeholder="password" class="pw" v-model='password' />
             </div>
           </div>
           <div class="lg_foot">
@@ -19,15 +19,15 @@
     </div>
     <div class="content login-mobile">
       <h1 class='i-logo'>登录</h1><br>
-      <input type="text" placeholder="请输入用户名" class="text-l w-100" v-model='username' required="required"><br>
-      <input type="password" placeholder="请输入密码" class="text-l w-100" v-model='password' required="required"><br>
+      <Input type="text" placeholder="请输入用户名" class="text-l w-100" v-model='username' required="required" /><br>
+      <Input type="password" placeholder="请输入密码" class="text-l w-100" v-model='password' required="required" /><br>
       <button class="btn w-100" @click.prevent='mylogin'>登录</button>
     </div>
   </div>
 </template>
 <script type="text/javascript">
   import Store from '../js/store.js'//引入缓存接口
-  import {login} from '../api/user';
+  import { login } from '../api/user';
 
   export default {
     data() {
@@ -43,8 +43,7 @@
         login({
           userName: this.username,
           password: this.password
-        }).then((res) => {
-          const data = res.data;
+        }).then((data) => {
           if (data.s) {
             window.sessionStorage.setItem('jwttoken', data.d);
             Store.save(this.username); //登录成功后存储缓存

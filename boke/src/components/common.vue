@@ -188,15 +188,15 @@
     },
     created() {
       //请求所有文章数据
-      searchArticle().then(res => {
-        if (res.data.c) {
-          this.currentArticles = res.data.d;
+      searchArticle().then(data => {
+        if (data.s) {
+          this.currentArticles = data.d;
         }
       });
       //请求所有标签数据
-      searchTags().then(res => {
-        if (res.data.c) {
-          this.tags = res.data.d;
+      searchTags().then(data => {
+        if (data.s) {
+          this.tags = data.d;
         }
       })
 

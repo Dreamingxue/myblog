@@ -1,6 +1,12 @@
 import { axios } from './axios';
 import qs from 'querystring';
 
-export const searchTags = (data) => {
-  return axios.get('/tags/search', qs.stringify(data));
+/**
+ *
+ * @param params
+ * @returns {Promise<any>}
+ */
+export const searchTags = async (params) => {
+  const { data } = await axios.get('/tags/search', qs.stringify(params));
+  return data;
 }

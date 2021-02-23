@@ -3,29 +3,32 @@ import qs from 'querystring';
 
 /**
  * 用户登录
- * @param data
- * @returns {AxiosPromise}
+ * @param
+ * @returns {}
  */
-export const login = (data) => {
-  return axios.post('/user/login', qs.stringify(data));
+export const login = async (params) => {
+  const { data } = await axios.post('/user/login', qs.stringify(params));
+  return data;
 }
 
 /**
  * 用户注册
- * @param data
- * @returns {AxiosPromise}
+ * @param
+ * @returns {}
  */
-export const registerUser = (data) => {
-  return axios.post('/user/register', data);
+export const registerUser = async (user) => {
+  const { data } = await axios.post('/user/register', user);
+  return data;
 }
 
 /**
  * 更新用户信息
- * @param data
+ * @param user
  * @returns {AxiosPromise}
  */
-export const updateUser = (data) => {
-  return axios.post('/user/update', data);
+export const updateUser = async (user) => {
+  const { data } = await axios.post('/user/update', user);
+  return data;
 }
 
 /**
@@ -33,8 +36,9 @@ export const updateUser = (data) => {
  * @param id
  * @param oldPassword
  * @param newPassword
- * @returns {AxiosPromise}
+ * @returns {}
  */
-export const updatePwd = (id, oldPassword, newPassword) => {
-  return axios.post('/user/update', qs.stringify({id, oldPassword, newPassword}));
+export const updatePwd = async (id, oldPassword, newPassword) => {
+  const { data } = await axios.post('/user/update', qs.stringify({id, oldPassword, newPassword}));
+  return data;
 }
