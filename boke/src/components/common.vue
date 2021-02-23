@@ -1,16 +1,7 @@
 <template>
   <div id="qianduan">
     <canvas id="#canvas"></canvas>
-    <header class="main-header1">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-xs-12">
-            <div class='title-img'></div>
-            <h2 class="hide">细雨衔雪的博客各种编程知识</h2>
-          </div>
-        </div>
-      </div>
-    </header>
+    <common-header/>
     <!-- end header -->
     <!-- start navigation -->
     <div class="common-main">
@@ -167,7 +158,7 @@
               <span>由细雨衔雪构建</span>
             </div>
             <div class="col-xs-12">
-              <span>皖ICP备17007835号</span>
+              <span>皖ICP备testestest号</span>
             </div>
           </div>
         </div>
@@ -179,10 +170,14 @@
 </template>
 
 <script type="text/javascript">
-  import '../css/style.css'
-  import '../css/style1.css'
+  import CommonHeader from './header';
+  import { searchArticle } from '../api/article';
+  import { searchTags } from '../api/tags';
 
   export default {
+    components: {
+      CommonHeader
+    },
     data() {
       return {
         currentArticles: null,
@@ -193,37 +188,15 @@
     },
     created() {
       //请求所有文章数据
-      $.ajax({
-
-        url: this.staticURL + 'currentArticle',
-        type: 'GET',
-        success: (data) => {
-          //console.log(1111)
-          this.currentArticles = data
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-
+      searchArticle().then(res => {
+        if (res.data.c) {
+          this.currentArticles = res.data.d;
         }
-      })
+      });
       //请求所有标签数据
-      $.ajax({
-        url: this.staticURL + 'findTags',
-        type: 'GET',
-        success: (data) => {
-          // console.log(data.data)
-          if (data.code = 1) {
-            //console.log(data.data.data[0].tags)
-            this.tags = data.data[0].tags
-          } else if (data.code = 0) {
-            this.message = data.data[0]
-          } else if (data.data.code = 2) {
-            this.message = data.data[0]
-          }
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-
+      searchTags().then(res => {
+        if (res.data.c) {
+          this.tags = res.data.d;
         }
       })
 
@@ -246,89 +219,93 @@
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
+  @import '../css/style.css';
+  @import '../css/style1.css';
+
   .common-main {
     /* margin-bottom:-42px; */
     background: #f5e5c1;
-  }
 
-  .title-img {
-    height: 100px;
-    background: url('http://shenyuxf.top/blog/static/img/title1.45a5080.png') no-repeat;
-  }
-
-  @media (max-width: 767px) {
-    .title-img {
-      width: 60%;
-      height: 80px;
-      background-size: contain;
-    }
-
-    .sidebar .title {
-      font-size: 16px;
-    }
-
-    .navbar-header {
-      text-align: center;
-    }
-
-    .main-navigation .menu li {
-      text-align: left;
-    }
-
-    .main-navigation .menu li a {
-      color: #333;
-    }
-
-    .main-footer .title {
-      font-size: 16px;
-    }
-  }
-
-  @media (min-width: 320px) {
-    .main-header1 {
-      margin-top: -130px;
-    }
-
-    .title-img {
-      margin-top: -60px;
-      height: 60px;
-    }
-  }
-
-  @media (min-width: 412px) {
-    .main-header1 {
-      margin-top: -110px;
-    }
-
-    .title-img {
-      margin-top: -80px;
-      height: 60px;
-    }
-  }
-
-  @media (min-width: 506px) {
-    .main-header1 {
-      margin-top: -100px;
-    }
-
-    .title-img {
-      margin-top: -100px;
-      height: 70px;
-    }
-  }
-
-  @media (min-width: 768px) {
     .title-img {
       height: 100px;
-      margin-top: -150px;
-      width: 50%;
-      background-size: cover;
+      background: url(/static/img/title1.png) no-repeat;
     }
 
-    .main-header1 {
-      height: 1px;
-      margin-top: -20px;
+    @media (max-width: 767px) {
+      .title-img {
+        width: 60%;
+        height: 80px;
+        background-size: contain;
+      }
+
+      .sidebar .title {
+        font-size: 16px;
+      }
+
+      .navbar-header {
+        text-align: center;
+      }
+
+      .main-navigation .menu li {
+        text-align: left;
+      }
+
+      .main-navigation .menu li a {
+        color: #333;
+      }
+
+      .main-footer .title {
+        font-size: 16px;
+      }
+    }
+
+    @media (min-width: 320px) {
+      .main-header1 {
+        margin-top: -130px;
+      }
+
+      .title-img {
+        margin-top: -60px;
+        height: 60px;
+      }
+    }
+
+    @media (min-width: 412px) {
+      .main-header1 {
+        margin-top: -110px;
+      }
+
+      .title-img {
+        margin-top: -80px;
+        height: 60px;
+      }
+    }
+
+    @media (min-width: 506px) {
+      .main-header1 {
+        margin-top: -100px;
+      }
+
+      .title-img {
+        margin-top: -100px;
+        height: 70px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .title-img {
+        height: 100px;
+        margin-top: -150px;
+        width: 50%;
+        background-size: cover;
+      }
+
+      .main-header1 {
+        height: 1px;
+        margin-top: -20px;
+      }
     }
   }
+
 </style>
