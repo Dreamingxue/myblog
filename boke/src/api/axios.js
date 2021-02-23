@@ -3,7 +3,7 @@ import axios from 'axios'
 let ApiUrl = 'http://nlminepool.cn:9085/app'
 let prodapi = process.env.NODE_ENV === 'production' // 是否线上部署
 if (prodapi) {
-  ApiUrl = 'http://nlminepool.cn:9085/app' // 线上API服务地址直接根路径
+  ApiUrl = '/app' // 线上API服务地址直接根路径
 }
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 30 * 1000
