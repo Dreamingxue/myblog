@@ -1,7 +1,7 @@
-import { axios, ApiUrl } from './axios';
+import { axios } from './axios';
 import qs from 'querystring';
 
 
 export const login = (data) => {
-  return axios.post(ApiUrl + '/user/login', qs.stringify(data));
+  return axios.post('/user/login', qs.stringify(data));
 }
