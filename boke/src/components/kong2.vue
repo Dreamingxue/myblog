@@ -10,7 +10,6 @@
       return {}
     },
     created() {
-      //console.log(123321)
       //console.log(this.$route.param)
       this.$router.push({path: '/index/' + this.$route.params.type + '?type=' + this.$route.query.type})
     }

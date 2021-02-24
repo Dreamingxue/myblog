@@ -37,6 +37,8 @@
 
 <script>
   import MarkdownIt from 'markdown-it';//先安装再引入
+  import { getArticle } from '../api/article';
+
   export default {
     data() {
       return {
@@ -56,22 +58,11 @@
     },
     //请求详情页数据，渲染页面
     created() {
-      $.ajax({
-        url: this.staticURL + 'detailArticle',
-        type: 'GET',
-        data: {_id: this.$route.query.id},
-        success: (data) => {
-          //console.log(data)
-          this.detailArticle = data
-          this.shareTitle = data.title
-          //console.log(this.shareTitle)
-          this.re();
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
-        }
-      })
+      const id = this.$route.query.id;
+      getArticle(id).then(data => {
+        this.detailArticle = data.d;
+        this.shareTitle = data.d.title;
+      });
       //根据缓存值判断，让页面刷新
       if (window.localStorage.getItem("code") && window.localStorage.getItem("code") != "nu") {
         window.localStorage.setItem("code", "nu")
@@ -121,7 +112,7 @@
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
   .detail-tips {
     color: #f00;
     text-align: center;

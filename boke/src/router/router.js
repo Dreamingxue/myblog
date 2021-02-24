@@ -31,11 +31,6 @@ var router=new Router({
                 {path:'',component:Atical},
                 {path:'type',component:Type},
                 //{path:'backend',component:Backend},//注意路径的上下顺序，越清楚的写在上面
-                //{path:'system',component:System},
-                //{path:'mobile',component:Mobile},
-                //{path:'tools',component:Tools},
-                //{path:'MAC',component:MAC},
-                //{path:'else',component:Else},
                 {path:'search/:keyword',component:Keyword},
                 {path:'aboutUs',component:AboutUs},
                 {path:'contactAuthod',component:ContactAuthod},
@@ -61,10 +56,4 @@ var router=new Router({
     ]
 })
 
-function isEmptyObject(obj) {
-     for (var key in obj) {
-         return false;
-     }
-     return true;
- }
 export default router;

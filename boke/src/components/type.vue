@@ -5,8 +5,8 @@
       <div class="post-head">
         <h1 class="post-title"><a href="##">{{article.title}}</a></h1>
         <div class="post-meta">
-          <span class="author">作者：<a href="http://unclealan.cn/index.php/author/1/">{{article.authod}}</a></span> •
-          <time class="post-date" datetime="2017-05-09T10:51:00+08:00" title="2017年05月09日">{{article.data}}</time>
+          <span class="author">作者：<a href="http://unclealan.cn/index.php/author/1/">{{article.author}}</a></span> •
+          <time class="post-date" datetime="2017-05-09T10:51:00+08:00" title="2017年05月09日">{{article.date}}</time>
         </div>
       </div>
       <!-- markdown编辑内容渲染 -->

@@ -10,7 +10,6 @@
       return {}
     },
     created() {
-      console.log(123321)
       console.log(this.$route.query)
       window.dd = 1
       //console.log(window.dd)

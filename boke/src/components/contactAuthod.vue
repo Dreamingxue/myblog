@@ -17,8 +17,6 @@
       </section>
 
     </article>
-
-
   </main>
 
 </template>

@@ -10,3 +10,12 @@ export const searchArticle = async (params) => {
   const { data } = await axios.get('/article/search', qs.stringify(params));
   return data;
 }
+/**
+ * 根据id 获取文章详情
+ * @param id
+ * @returns {Promise<any>}
+ */
+export const getArticle = async (id) => {
+  const { data } = await axios.get('/article/get', qs.stringify({id}));
+  return data;
+}
