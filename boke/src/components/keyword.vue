@@ -70,18 +70,11 @@
       },
       handleClick(newIndex) {
         //console.log('--------',newIndex)
-        $.ajax({
-          url: `${this.staticURL}searchKeyword/?page=${newIndex}`,
-          data: {keyword: this.$route.params.keyword},
-          type: 'GET',
-          success: (data) => {
-            this.articles = data
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-            this.message = '文章请求失败'
+        searchArticle({keyword: this.$route.params.keyword, page: newIndex}).then(data => {
+          if (data.s) {
+            this.articles = data.d;
           }
-        })
+        });
         $(window).scrollTop(0)
       }
     },

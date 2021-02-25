@@ -2,3 +2,65 @@
   padding: 0;
   margin: 0;
 }
+
+html,
+body {
+  min-width: 1280px !important;
+/ / color: #505050;
+  line-height: 1.75em;
+  background: #f5e5c1 url(http://cs.itbyc.com/bgimg_top%5B1%5D.jpg) 50% top scroll no-repeat;
+  background-size: 100%;
+  color: #272a30;
+/ / background: #ebebeb;
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  color: #303030;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 0.75em;
+}
+
+a {
+  color: #e74851;
+  outline: none;
+}
+
+a:hover {
+  color: #e74851;
+}
+
+a:active,
+a:focus,
+a img {
+  outline: none;
+}

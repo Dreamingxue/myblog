@@ -19,3 +19,13 @@ export const getArticle = async (id) => {
   const { data } = await axios.get('/article/get', qs.stringify({id}));
   return data;
 }
+
+/**
+ * 根据id 添加文章
+ * @param article
+ * @returns {Promise<>}
+ */
+export const addArticle = async (article) => {
+  const { data } = await axios.post('/article/addArticle', article);
+  return data;
+}
