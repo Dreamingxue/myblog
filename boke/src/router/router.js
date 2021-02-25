@@ -4,7 +4,7 @@ import Atical from '../components/index.vue'
 import Login from '../components/login.vue'
 import Common from '../components/common.vue'
 import Admin from '../components/admin/admin.vue'
-import ManageAtical from '../components/admin/manageAatical.vue'
+import ManageArtical from '../components/admin/manageArtical.vue'
 import Summary from '../components/admin/summary.vue'
 import AddArticle from '../components/admin/addAtical.vue'
 import AlertArticle from '../components/admin/alertArticle.vue'
@@ -42,7 +42,7 @@ var router=new Router({
             children:[
                 {path:'',component:Summary},
                 //文章管理页
-                {path:'manage-article',component:ManageAtical},
+                {path:'manage-article',component:ManageArtical},
                 {path:'add-article',component:AddArticle},
                 {path:'alert-article/:id',component:AlertArticle},
                 {path:'personal',component:Personal}

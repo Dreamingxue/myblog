@@ -64,3 +64,67 @@ a:focus,
 a img {
   outline: none;
 }
+
+
+ul, ol {
+  list-style: none;
+}
+
+body {
+  font: 12px/150% Arial, Verdana, "\5b8b\4f53"; /*unicode 编码 宋体*/
+  color: #666;
+  background: #fff
+}
+
+/*清除浮动 -- 减少浏览器渲染负担 -- 推荐*/
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #C81623;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 100%;
+}
+
+s, i, em {
+  font-style: normal;
+  text-decoration: none;
+}
+
+.col-red {
+  color: #C81623 !important;
+}
+
+/*公共类*/
+.w { /*版心 提取 */
+  width: 1210px;
+  margin: 0 auto;
+}
+
+.fl {
+  float: left
+}
+
+.fr {
+  float: right
+}
+
+.al {
+  text-align: left;
+}
+

@@ -66,8 +66,7 @@
   </div>
 </template>
 <script type="text/javascript">
-  import '../../css/manage.css'
-
+  import { searchArticle } from '../../api/article';
   export default {
     data() {
       return {
@@ -87,133 +86,46 @@
       //var type=window.localStorage.getItem('type')
       //console.log(type)
       //获取所有文章数据
-      $.ajax({
-        url: this.staticURL + 'myallArticle',
-        type: 'GET',
-        success: (data) => {
-          this.articles = data
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
-          this.show = true
+      searchArticle().then(data => {
+        if (data.s) {
+          this.articles = data.d.list;
+          this.total = data.d.total;
         }
-      })
-      //总条数
-
-      $.ajax({
-        url: this.staticURL + 'myCount',
-        type: 'GET',
-        success: (data) => {
-          this.total = data.length
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '查找失败'
-          this.show = true
-        }
-      })
-
+      });
     },
     methods: {
       //分页
       handleClick(newIndex) {
         //当前第几页
         //console.log('page size change event', newIndex)
-        if (this.type == '所有分类') {
-          $.ajax({
-            url: `${this.staticURL}myallArticle/?page=${newIndex}`,
-            type: 'GET',
-            success: (data) => {
-              this.articles = data;
-            },
-            dataType: 'json',
-            error: (xhr, status, error) => {
-              this.message = '查找失败'
-              this.show = true
-            }
-          })
-        } else {
-          $.ajax({
-            url: `${this.staticURL}selectType/?page=${newIndex}`,
-            data: {type: this.type},
-            type: 'GET',
-            success: (data) => {
-              this.articles = data;
-            },
-            dataType: 'json',
-            error: (xhr, status, error) => {
-              this.message = '查找失败'
-              this.show = true
-            }
-          })
+        const search = { type: 'all', page: newIndex };
+        if (this.type !== '所有分类') {
+          search.type = this.type;
         }
-
+        this.current = newIndex;
+        searchArticle(search).then(data => {
+          if (data.s) {
+            this.articles = data.d.list;
+            this.total = data.d.total;
+          }
+        });
       },
       //筛选文章类型
       selectType() {
         //eventBus.$emit('typedata',this.type)
         //window.localStorage.setItem('type',this.type)
         //console.log(this.type)
-        if (this.type == '所有分类') {
-          $.ajax({
-            url: this.staticURL + 'myallArticle',
-            type: 'GET',
-            success: (data) => {
-              this.articles = data
-            },
-            dataType: 'json',
-            error: (xhr, status, error) => {
-              this.message = '查找失败'
-              this.show = true
-            }
-          })
-
-          $.ajax({
-            url: this.staticURL + 'myCount',
-            type: 'GET',
-            success: (data) => {
-              //console.log(1111)
-              this.total = data.length
-            },
-            dataType: 'json',
-            error: (xhr, status, error) => {
-              this.message = '查找失败'
-              this.show = true
-            }
-          })
-
-        } else {
-          $.ajax({
-            url: this.staticURL + 'selectType',
-            data: {type: this.type},
-            type: 'GET',
-            success: (data) => {
-              this.articles = data
-            },
-            dataType: 'json',
-            error: (xhr, status, error) => {
-              this.message = '查找失败'
-              this.show = true
-            }
-          })
-          //获取每种类型数量
-          //
-          $.ajax({
-            url: this.staticURL + 'selectTypeCount',
-            data: {type: this.type},
-            type: 'GET',
-            success: (data) => {
-              //console.log(1111)
-              this.total = data.length
-            },
-            dataType: 'json',
-            error: (xhr, status, error) => {
-              this.message == '查找失败'
-              this.show = true
-            }
-          })
+        const search = { type: 'all' };
+        if (this.type !== '所有分类') {
+          search.type = this.type;
         }
+        this.current = newIndex;
+        searchArticle(search).then(data => {
+          if (data.s) {
+            this.articles = data.d.list;
+            this.total = data.d.total;
+          }
+        })
       },
       //删除数据
       removeArticle(index) {
@@ -338,7 +250,124 @@
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
+  .allArticle .table {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .allArticle .table th {
+    border: 1px solid #999;
+    height: 40px;
+    background: #abcdef
+  }
+
+  .allArticle .table tr td {
+    border: 1px solid #ccc;
+    height: 30px;
+    padding: 5px;
+  }
+
+  @media (min-width: 768px) {
+    .pc {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .atical-header {
+      margin: 30px 0;
+    }
+
+    .atical-header .atical-nav {
+      margin: 30px 0px;
+      text-align: left;
+    }
+
+    .atical-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .atical-header .mybtn {
+      border-radius: 3px;
+      padding: 5px 10px;
+    }
+
+    .atical-header .add-artical {
+      width: 50%;
+      float: left;
+    }
+
+    .atical-header .search {
+      float: right;
+    }
+
+    .atical-header .artical-type {
+      width: 100px;
+      height: 34px;
+      border-style: none;
+      border-radius: 6px;
+    }
+
+    .allArticle .col-last {
+      padding: 3px;
+    }
+
+    .allArticle .col-last .btn {
+      width: 50px;
+      height: 30px;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .pc {
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .atical-header {
+      margin: 20px 0;
+    }
+
+    .atical-header .mybtn {
+      height: 30px;
+      padding: 5px 10px;
+    }
+
+    .atical-header .artical-type {
+      width: 80px;
+      height: 30px;
+      border-style: none;
+      border-radius: 6px;
+    }
+
+    .allArticle .col-last {
+      padding: 3px;
+    }
+
+    .allArticle .col-last .btn {
+      width: 40px;
+      height: 25px;
+      padding: 5px;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 912px) {
+    .allArticle .col-last .btn {
+      width: 40px;
+      height: 25px;
+      padding: 5px;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  }
+
   #fenye > div {
     text-align: center;
     margin: 50px 0;
