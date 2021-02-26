@@ -28,15 +28,13 @@
     <!-- 分页 -->
     <div class="pagination">
       <template>
-        <mu-pagination :total="total" :current="current" @pageChange="handleClick" :pageSize='pageSize'></mu-pagination>
+        <el-pagination background :total="total" :current="current" @pageChange="handleClick" :pageSize='pageSize' />
       </template>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-  import axios from 'axios';
-  //var MarkdownIt = require('markdown-it');
   import MarkdownIt from 'markdown-it';
   import {searchArticle} from "../api/article";
   //先安装再引入
@@ -44,7 +42,7 @@
     data() {
       return {
         message: '',
-        articles: null,
+        articles: [],
         total: 1,//先设置个默认值
         _id: null,
         current: 1,

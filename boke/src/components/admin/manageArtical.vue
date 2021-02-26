@@ -60,7 +60,7 @@
     </div>
     <div id='fenye'>
       <template>
-        <mu-pagination :total="total" :current="current" @pageChange="handleClick" :pageSize='pageSize'></mu-pagination>
+        <el-pagination background :total="total" :current="current" @pageChange="handleClick" :pageSize='pageSize' />
       </template>
     </div>
   </div>

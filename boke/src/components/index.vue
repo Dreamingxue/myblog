@@ -27,7 +27,7 @@
     <!-- 分页 -->
     <div class="pagination">
       <template>
-        <mu-pagination :total="total" :current="current" @pageChange="handleClick" :pageSize='pageSize'></mu-pagination>
+        <el-pagination background :total="total" :current="current" @pageChange="handleClick" :pageSize='pageSize' />
       </template>
     </div>
   </div>
