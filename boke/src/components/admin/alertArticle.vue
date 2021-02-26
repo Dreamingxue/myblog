@@ -51,6 +51,7 @@
   </div>
 </template>
 <script>
+  import {getArticle, updateArticle} from '../../api/article';
   import {mavonEditor} from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
 
@@ -76,25 +77,20 @@
       // or 'mavon-editor': mavonEditor
     },
     created() {
-      $.ajax({
-        url: this.staticURL + 'alertOldArticle',
-        data: {_id: this.$route.params.id},
-        type: 'GET',
-        success: (data) => {
-          this.newArticle = data;
-          this.articleTitle = this.newArticle[0].title;
-          this.content = this.newArticle[0].content;
-          this.date = this.newArticle[0].data;
-          this.id = this.newArticle[0].id;
-          this.authod = this.newArticle[0].authod;
-          this.keyword = this.newArticle[0].keyword;
-          this.checkedType.unshift(this.newArticle[0].type)
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
+      getArticle(this.$route.params.id).then(res => {
+        if (!res.s) {
+          this.$message.error(res.m);
+          return;
         }
-      })
+        this.newArticle = res.d;
+        this.articleTitle = this.newArticle[0].title;
+        this.content = this.newArticle[0].content;
+        this.date = this.newArticle[0].data;
+        this.id = this.newArticle[0].id;
+        this.authod = this.newArticle[0].authod;
+        this.keyword = this.newArticle[0].keyword;
+        this.checkedType.unshift(this.newArticle[0].type)
+      });
     },
 
     methods: {
@@ -106,28 +102,21 @@
       alertArticle() {
         //console.log('-----------',this.$route.params.id)
         //console.log(this.articleTitle)
-        $.ajax({
-          url: this.staticURL + 'alertArticle',
-          data: {
-            articleTitle: this.articleTitle,
-            content: this.content,
-            date: this.date,
-            authod: this.authod,
-            id: this.id,
-            keyword: this.keyword,
-            checkedType: this.checkedType,
-            _id: this.$route.params.id
-          },
-          type: 'GET',
-          success: (data) => {
-            //console.log(1111)
-            this.message = data;
-          },
-          dataType: 'text',
-          error: (xhr, status, error) => {
-            this.message = '发送请求失败'
+        updateArticle({
+          articleTitle: this.articleTitle,
+          content: this.content,
+          date: this.date,
+          authod: this.authod,
+          keyword: this.keyword,
+          checkedType: this.checkedType,
+          id: this.$route.params.id
+        }).then(res => {
+          if (res.s) {
+            this.$message.info('更新文章成功!');
+          } else {
+            this.$message.error(res.m);
           }
-        })
+        });
       }
     }
   }

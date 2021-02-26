@@ -37,7 +37,9 @@
 <script type="text/javascript">
   import axios from 'axios';
   //var MarkdownIt = require('markdown-it');
-  import MarkdownIt from 'markdown-it';//先安装再引入
+  import MarkdownIt from 'markdown-it';
+  import {searchArticle} from "../api/article";
+  //先安装再引入
   export default {
     data() {
       return {
@@ -53,33 +55,17 @@
 
     created() {
       //console.log('-----------',this.$route.query)
-      $.ajax({
-        url: this.staticURL + 'articleType',
-        data: {type: this.$route.query.type},
-        type: 'GET',
-        success: (data) => {
-          //console.log(1111)
-          this.articles = data
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
+      const params = {
+        type: this.$route.query.type
+      };
+      searchArticle(params).then(res => {
+        if (res.s) {
+          this.articles = res.d.list;
+          this.total = res.d.total;
+        } else {
+          this.$message.error(res.m);
         }
-      })
-      //总条数
-      $.ajax({
-        url: this.staticURL + 'typeCount',
-        data: {type: this.$route.query.type},
-        type: 'GET',
-        success: (data) => {
-          //console.log(1111)
-          this.total = data.length
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
-        }
-      })
+      });
     },
     methods: {
       //将输入的markdown文档通过解析后再渲染
@@ -92,25 +78,24 @@
       //分页
       handleClick(newIndex) {
         // console.log('--------',newIndex)
-        $.ajax({
-          url: `${this.staticURL}articleType/?page=${newIndex}`,
-          data: {type: this.$route.query.type},
-          type: 'GET',
-          success: (data) => {
-            //console.log(1111)
-            this.articles = data
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-            this.message = '发送请求失败'
+        const params = {
+          type: this.$route.query.type,
+          page: newIndex
+        };
+        searchArticle(params).then(res => {
+          if (res.s) {
+            this.articles = res.d.list;
+            this.total = res.d.total;
+          } else {
+            this.$message.error(res.m);
           }
-        })
-        $(window).scrollTop(0)
+        });
+        document.body.scrollTop = 0;
       }
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
   .index-tips {
     color: #f00;
     text-align: center;

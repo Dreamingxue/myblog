@@ -33,7 +33,9 @@
   </div>
 </template>
 <script type="text/javascript">
-  import MarkdownIt from 'markdown-it';//先安装再引入
+  import MarkdownIt from 'markdown-it';
+  import { searchArticle } from "../api/article";
+  //先安装再引入
   export default {
     data() {
       return {
@@ -48,29 +50,14 @@
 
     //请求文章
     created() {
-      $.ajax({
-        url: this.staticURL + 'generalArticle',
-        type: 'GET',
-        success: (data) => {
-          this.articles = data
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-
+      searchArticle().then(res => {
+        if (!res.s) {
+          this.$message.error(res.m);
+          return;
         }
-      })
-      //总条数
-      $.ajax({
-        url: this.staticURL + 'myCount',
-        type: 'GET',
-        success: (data) => {
-          this.total = data.length
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-
-        }
-      })
+        this.articles = res.d.list;
+        this.total = res.d.total;
+      });
     },
     methods: {
       //将输入的markdown文档通过解析后再渲染
@@ -82,24 +69,22 @@
       },
       handleClick(newIndex) {
         //console.log('--------',newIndex)
-        $.ajax({
-          url: `${this.staticURL}generalArticle/?page=${newIndex}`,
-          type: 'GET',
-          success: (data) => {
-            this.articles = data
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-
+        const params = {page: newIndex};
+        searchArticle().then(res => {
+          if (!res.s) {
+            this.$message.error(res.m);
+            return;
           }
-        })
+          this.articles = res.d.list;
+          this.total = res.d.total;
+        });
         //点击分页时，跳到页面顶部
-        $(window).scrollTop(0)
+        document.body.scrollTop = 0;
       }
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
   .index-tips {
     color: #f00;
     text-align: center;

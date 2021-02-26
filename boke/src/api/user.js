@@ -38,7 +38,12 @@ export const updateUser = async (user) => {
  * @param newPassword
  * @returns {}
  */
-export const updatePwd = async (id, oldPassword, newPassword) => {
-  const { data } = await axios.post('/user/update', qs.stringify({id, oldPassword, newPassword}));
+export const updatePwd = async (id, newPassword, confirmPassword) => {
+  const { data } = await axios.post('/user/update', qs.stringify({id, confirmPassword, newPassword}));
+  return data;
+}
+
+export const getUser = async (id) => {
+  const { data } = await axios.post('/user/get', qs.stringify({id}));
   return data;
 }

@@ -208,13 +208,13 @@
         this.keyword = null;
       },
       gotop() {
-        $(window).scrollTop(0)
+        document.body.scrollTop = 0;
       },
       //跳转空白中转路由
       tagSearch(index) {
         //console.log(this.tag[index])
         this.$router.push({path: '/search/' + this.tags[index] + '?code=0'})
-        $(window).scrollTop(0)
+        document.body.scrollTop = 0;
       }
     }
   }

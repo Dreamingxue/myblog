@@ -66,7 +66,8 @@
   </div>
 </template>
 <script type="text/javascript">
-  import { searchArticle } from '../../api/article';
+  import { searchArticle, deleteArticle } from '../../api/article';
+  import { addTag, deleteTag, searchTags } from '../../api/tags';
   export default {
     data() {
       return {
@@ -129,120 +130,46 @@
       },
       //删除数据
       removeArticle(index) {
-        $.ajax({
-          url: this.staticURL + 'removeArticle',
-          data: {_id: this.articles[index]._id},
-          type: 'GET',
-          success: (data) => {
-            if (data = '删除成功') {
-              this.$router.go(0)//重新进入该页面
-            } else {
-              this.message = data
-              this.show = true
-            }
-          },
-          dataType: 'text',
-          error: (xhr, status, error) => {
-            this.message = '删除失败'
-            this.show = true
+        const id = this.articles[index].id;
+        deleteArticle(id).then(res => {
+          if (res.s) {
+            this.$message.info('删除成功~');
+          } else {
+            this.$message.error(res.m);
           }
         })
       },
       //取消筛选
       cancel() {
         this.type = '所有分类'
-        $.ajax({
-          url: this.staticURL + 'myallArticle',
-          type: 'GET',
-          success: (data) => {
-            this.articles = data
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-            this.message = '查找失败'
-            this.show = true
-          }
-        })
-        $.ajax({
-          url: this.staticURL + 'myCount',
-          type: 'GET',
-          success: (data) => {
-            //console.log(1111)
-            this.total = data.length
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-            this.message = '查找失败'
-            this.show = true
+        searchArticle().then(res => {
+          if (res.s) {
+            this.articles = res.d.list;
+            this.total = res.d.total;
           }
         })
       },
       //添加标签
       addTag() {
         //添加标签
-        $.ajax({
-          url: this.staticURL + 'addTags',
-          data: {tags: this.tags},
-          type: 'GET',
-          success: (data) => {
-            if (data.code = 1) {
-              console.log(data.data[0].tags)
-              this.message = data.data
-              this.show = true
-              setTimeout(() => {
-                this.show = false
-              }, 1000)
-            } else if (data.code = 0) {
-              this.message = data.data
-              this.show = true
-              setTimeout(() => {
-                this.show = false
-              }, 1000)
-            } else if (data.code = 2) {
-              this.message = data.data
-              this.show = true
-              setTimeout(() => {
-                this.show = false
-              }, 1000)
-            }
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-            this.message = '发送请求失败'
+        const data = {
+          tags: this.tags
+        };
+        addTag(data).then(res => {
+          if (res.s) {
+            this.$message.info('添加标签成功~');
+          } else {
+            this.$message.error(res.m);
           }
-        })
+        });
         this.tags = ''
       },
       removeTag() {
-        $.ajax({
-          url: this.staticURL + 'removeTags',
-          data: {tags: this.removeTags},
-          type: 'GET',
-          success: (data) => {
-            if (data.code = 1) {
-              console.log(data.data[0].tags)
-              this.message = data.data
-              this.show = true
-              setTimeout(() => {
-                this.show = false
-              }, 1000)
-            } else if (data.code = 0) {
-              this.message = data.data
-              this.show = true
-              setTimeout(() => {
-                this.show = false
-              }, 1000)
-            } else if (data.code = 2) {
-              this.message = data.data
-              this.show = true
-              setTimeout(() => {
-                this.show = false
-              }, 1000)
-            }
-          },
-          dataType: 'json',
-          error: (xhr, status, error) => {
-            this.message = '发送请求失败'
+        deleteTag().then(res => {
+          if (res.s) {
+            this.$message.info('删除标签成功~');
+          } else {
+            this.$message.error(res.m);
           }
         })
         this.removeTags = ''

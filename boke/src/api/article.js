@@ -21,11 +21,21 @@ export const getArticle = async (id) => {
 }
 
 /**
- * 根据id 添加文章
+ * 添加文章
  * @param article
  * @returns {Promise<>}
  */
 export const addArticle = async (article) => {
   const { data } = await axios.post('/article/addArticle', article);
+  return data;
+}
+
+/**
+ * 根据id 更新文章
+ * @param article
+ * @returns {Promise<>}
+ */
+export const updateArticle = async (article) => {
+  const { data } = await axios.post('/article/updateArticle', article);
   return data;
 }

@@ -70,7 +70,7 @@
   </div>
 </template>
 <script type="text/javascript">
-  import axios from 'axios'
+  import { updateUser, updatePwd, getUser } from '../../api/user';
 
   export default {
     data() {
@@ -91,78 +91,46 @@
     },
     //实例创建之后渲染数据到界面
     created() {
-      axios.get(this.staticURL + 'users/personal').then(data => {
+      getUser(this._id).then(res => {
+        if (!res.s) {
+          this.$message.error('获取用户失败!');
+          return;
+        }
+        const data = res.d;
         this.nick = data.nick;
         this.address = data.address;
         this.email = data.email;
         this._id = data._id;
-      }).catch(error => {
-        console.error(error);
-      })
-      // $.ajax({
-      //     url:this.staticURL+'users/personal',
-      //     type:'GET',
-      //     success:(data)=>{
-      //         this.nick=data.nick;
-      //         this.address=data.address;
-      //         this.email=data.email;
-      //         this._id=data._id;
-      //     },
-      //     dataType:'json',
-      //     error:(xhr,status,error)=>{
-      //         this.message='发送请求失败'
-      //         this.toggle=true
-      //     }
-      // })
+      });
     },
     methods: {
       //更改个人资料数据
       changePersonal() {
-        $.ajax({
-          url: this.staticURL + 'users/changePersonal',
-          data: {
-            nick: this.nick,
-            address: this.address,
-            email: this.email,
-            _id: this._id
-          },
-          type: 'GET',
-          success: (data) => {
-            this.message = data
-            this.toggle = true
-          },
-          dataType: 'text',
-          error: (xhr, status, error) => {
-            this.message = '发送请求失败'
-            this.toggle = true
-          }
-        })
+        updateUser({nick: this.nick,
+          address: this.address,
+          email: this.email,
+          id: this._id}).then(res => {
+            if (res.s) {
+              this.$message.info('更新成功!');
+            } else {
+              this.$message.error(res.m);
+            }
+        });
       },
       //修改密码
       changePassword() {
-        $.ajax({
-          url: this.staticURL + 'users/changePassword',
-          data: {
-            admin: this.nick,
-            newPassword: this.newPassword,
-            confirmPassword: this.confirmPassword
-          },
-          type: 'POST',
-          success: (data) => {
-            this.pswmessage = data
-            this.pswToggle = true
-          },
-          dataType: 'text',
-          error: (xhr, status, error) => {
-            this.pswmessage = '请求错误'
-            this.pswToggle = true
+        updatePwd(this._id, this.newPassword, this.confirmPassword).then(res => {
+          if (!res.s) {
+            this.$message.error(res.m);
+            return;
           }
-        })
+          this.pswToggle = true;
+        });
       }
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
 
   ul li {
     list-style: none;

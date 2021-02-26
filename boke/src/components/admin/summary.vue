@@ -26,6 +26,7 @@
 </template>
 <script type="text/javascript">
   import axios from 'axios'
+  import {searchArticle} from "../../api/article";
 
   export default {
     data() {
@@ -36,21 +37,21 @@
     },
     //查找最十条数据
     created() {
-      $.ajax({
-        url: this.staticURL + 'latelyArticle',
-        type: 'GET',
-        success: (data) => {
-          this.latelyArticles = data
-        },
-        dataType: 'json',
-        error: (xhr, status, error) => {
-          this.message = '发送请求失败'
+      const params = {
+        orderBy: 'LASTEST',
+        limit: 10
+      }
+      searchArticle(params).then(res => {
+        if (res.s) {
+          this.latelyArticles = res.d.list;
+        } else {
+          this.$message.error(res.m);
         }
-      })
+      });
     }
   }
 </script>
-<style type="text/css" scoped>
+<style lang="scss" scoped>
   .comment-num {
     font-size: 18px;
     font-weight: 600;

@@ -75,7 +75,7 @@
             this.articles = data.d;
           }
         });
-        $(window).scrollTop(0)
+        document.body.scrollTop = 0;
       }
     },
     watch: {
