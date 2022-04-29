@@ -264,9 +264,9 @@ async-validator@~1.8.1:
     babel-runtime "6.x"
 
 async@^2.1.2:
-  version "2.6.3"
-  resolved "http://npm-registry.qunhequnhe.com/async/download/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
-  integrity sha1-1yYl4jRKNlbjo61Pp0n6gymdgv8=
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.4.tgz#706b7ff6084664cd7eae713f6f965433b5504221"
+  integrity sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==
   dependencies:
     lodash "^4.17.14"
 
@@ -3430,11 +3430,6 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-keycode@^2.1.9:
-  version "2.2.0"
-  resolved "http://npm-registry.qunhequnhe.com/keycode/download/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
-  integrity sha1-PQr1bce4uOXLqNCpfxByBO7CKwQ=
-
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "http://npm-registry.qunhequnhe.com/kind-of/download/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -3539,25 +3534,15 @@ lodash.memoize@^4.1.2:
   resolved "http://npm-registry.qunhequnhe.com/lodash.memoize/download/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
-lodash.tolower@^4.1.2:
-  version "4.1.2"
-  resolved "http://npm-registry.qunhequnhe.com/lodash.tolower/download/lodash.tolower-4.1.2.tgz#d6d309ac43eef8d44e8ded66b73dab0beb0806d7"
-  integrity sha1-1tMJrEPu+NROje1mtz2rC+sIBtc=
-
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "http://npm-registry.qunhequnhe.com/lodash.uniq/download/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.0.0, lodash@~4.17.10:
+lodash@^4.0.0, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.2, lodash@^4.17.20, lodash@^4.17.3, lodash@^4.17.4, lodash@~4.17.10:
   version "4.17.21"
   resolved "http://npm-registry.qunhequnhe.com/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
-
-lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.2, lodash@^4.17.20, lodash@^4.17.3, lodash@^4.17.4:
-  version "4.17.20"
-  resolved "http://npm-registry.qunhequnhe.com/lodash/download/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
 
 log-symbols@^2.1.0:
   version "2.2.0"
@@ -3870,14 +3855,6 @@ ms@2.1.1:
   version "2.1.1"
   resolved "http://npm-registry.qunhequnhe.com/ms/download/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha1-MKWGTrPrsKZvLr5tcnrwagnYbgo=
-
-muse-ui@^2.0.3:
-  version "2.1.0"
-  resolved "http://npm-registry.qunhequnhe.com/muse-ui/download/muse-ui-2.1.0.tgz#aa2f6e7df220beedbb908417ba4850071bff64df"
-  integrity sha1-qi9uffIgvu27kIQXukhQBxv/ZN8=
-  dependencies:
-    keycode "^2.1.9"
-    lodash.tolower "^4.1.2"
 
 nan@^2.12.1, nan@^2.13.2:
   version "2.14.2"
